@@ -2,6 +2,12 @@ import logo from "./logo.svg";
 import "./App.css";
 
 function App() {
+  const handleClick = (path) => {
+    fetch(`https://us-central1-zero-ninja.cloudfunctions.net/app/${path || ''}`)
+      .then(response => response.json())
+      .then(data => console.log(data));
+  }
+
   return (
     <div className="App">
       <header className="App-header">
@@ -9,14 +15,8 @@ function App() {
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React ooooo Anda bien
-        </a>
+        <button type="button" style={{ height: "50px", width: "100px" }} onClick={() => handleClick()}>Show me the money!</button>
+        <button type="button" style={{ color: "red", height: "50px", width: "100px" }} onClick={() => handleClick('api')}>Show me the money on red!</button>
       </header>
     </div>
   );
